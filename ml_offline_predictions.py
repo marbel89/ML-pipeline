@@ -5,6 +5,7 @@ import pandas as pd
 import joblib
 from datetime import datetime
 import json
+
 sys.path.append(".")
 
 parser = argparse.ArgumentParser()
@@ -17,25 +18,25 @@ with open(args.config, "r") as config_file:
     config = json.load(config_file)
 
 include_cols = config["input_features"] + \
-    [config["id_field"]]
+               [config["id_field"]]
 
 new_data = pd.read_csv(config["input_filename"],
-                       usecols = include_cols)
+                       usecols=include_cols)
 
 model = joblib.load(config["model_filename"])
 
 output = pd.DataFrame()
 output[config["id_field"]] = new_data[config["id_field"]].copy()
-output["model_prediction"] = model.\
-    clf.\
-    predict_proba(new_data[config["input_features"]])[::,1]
+output["model_prediction"] = model. \
+                                 clf. \
+                                 predict_proba(new_data[config["input_features"]])[::, 1]
 
-output["prediction_date"] = datetime.\
-    date(datetime.now()).\
+output["prediction_date"] = datetime. \
+    date(datetime.now()). \
     strftime("%Y-%m-%d")
 
 sqliteConnection = sqlite3.connect(
-     config["output_database"])
+    config["output_database"])
 cursor = sqliteConnection.cursor()
 print("Connected to SQLite...")
 

@@ -3,7 +3,8 @@ from sklearn.model_selection import RandomizedSearchCV
 
 class MLModel:
 
-    def __init__(self, m_model, parameters, n_jobs, scoring, n_iter, random_state):
+    def __init__(self, ml_model, parameters, n_jobs, scoring, n_iter, random_state):
+        self.clf = None
         self.parameters = parameters
         self.n_jobs = n_jobs
         self.scoring = scoring
