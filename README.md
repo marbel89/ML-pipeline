@@ -55,11 +55,6 @@ This project demonstrates how to put a machine learning model into production us
     ```
 
 ## Project Structure
-# ML Pipeline Project
-
-This project demonstrates how to implement a machine learning pipeline for customer churn prediction. It includes scripts for data processing, model training, offline predictions, and configuration management.
-
-## Project Structure
 ```
 ML_Pipeline/
 │
